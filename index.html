@@ -1,0 +1,86 @@
+<!--
+	   _            _    
+	  | |          | |   
+   ___| | ___   ___| | __
+  / __| |/ _ \ / __| |/ /
+ | (__| | (_) | (__|   < 
+  \___|_|\___/ \___|_|\_\
+						 
+					by koyu
+
+A simple clock web app for display on big screens.
+
+clock.koyu.space :3
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>clock</title>
+		<style>
+			body, html { cursor: none !important; }
+			body {
+				color: #222;
+				background: #fff;
+				font-family: sans-serif;
+				font-weight: 600;
+				font-size: 13em;
+				text-align: center;
+				overflow: hidden;
+				margin: 0;
+				padding: 0;
+				width: 100%;
+				height: 100%;
+			}
+			@media(prefers-color-scheme: dark) {
+				body {
+					background: #222;
+					color: #fff;
+				}
+			}
+			#clock {
+				margin: 0;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				-ms-transform: translate(-50%, -50%);
+				transform: translate(-50%, -50%);
+			}
+			#close {
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 64px;
+				height: 100vh;
+			}
+			#source {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 64px;
+				height: 100vh;
+			}
+		</style>
+		<script>
+			function showTime(){
+				var date = new Date();
+				var h = date.getHours();
+				var m = date.getMinutes();
+				var s = date.getSeconds();
+				
+				h = (h < 10) ? "0" + h : h;
+				m = (m < 10) ? "0" + m : m;
+				s = (s < 10) ? "0" + s : s;
+				
+				var time = h + ":" + m + ":" + s + " ";
+				document.getElementById("clock").innerHTML = time;
+				setTimeout(showTime, 1000);
+			}
+		</script>
+	</head>
+	<body onload="showTime()">
+		<div id="close" onmouseover="window.close()"></div>
+		<div id="source" onmouseover="window.open('https://github.com/koyuawsmbrtn/clock', '_blank')"></div>
+		<div id="clock"></div>
+	</body>
+</html>
